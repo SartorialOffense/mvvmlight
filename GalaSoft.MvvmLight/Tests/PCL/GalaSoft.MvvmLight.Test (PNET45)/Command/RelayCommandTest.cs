@@ -20,11 +20,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         private WeakReference _reference;
         private TemporaryClass _tempoInstance;
 
-        public RelayCommand TestCommand
-        {
-            get;
-            private set;
-        }
+        public RelayCommand TestCommand { get; private set; }
 
         [TestMethod]
         public void TestCallingExecuteWhenCanExecuteIsFalse()
@@ -51,9 +47,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             var canExecute = true;
 
             var command = new RelayCommand(
-                () =>
-                {
-                },
+                () => { },
                 () => canExecute);
 
             Assert.AreEqual(true, command.CanExecute(null));
@@ -67,9 +61,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         public void TestCanExecuteChanged()
         {
             var command = new RelayCommand(
-                () =>
-                {
-                },
+                () => { },
                 () => true);
 
             var canExecuteChangedCalled = 0;
@@ -110,9 +102,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         public void TestCanExecuteNull()
         {
             var command = new RelayCommand(
-                () =>
-                {
-                });
+                () => { });
 
             Assert.AreEqual(true, command.CanExecute(null));
         }
@@ -150,10 +140,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             const string executed = "Executed";
 
             var command = new RelayCommand(
-                () =>
-                {
-                    dummy = executed;
-                });
+                () => { dummy = executed; });
 
             command.Execute(null);
 
@@ -161,7 +148,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         private static string _dummyStatic;
-        
+
         [TestMethod]
         public void TestExecuteStatic()
         {
@@ -169,10 +156,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             const string executed = "Executed";
 
             var command = new RelayCommand(
-                () =>
-                {
-                    _dummyStatic = executed;
-                });
+                () => { _dummyStatic = executed; });
 
             command.Execute(null);
 
@@ -182,16 +166,21 @@ namespace GalaSoft.MvvmLight.Test.Command
         [TestMethod]
         public void TestReleasingTargetForCanExecute()
         {
-            _tempoInstance = new TemporaryClass();
-            _reference = new WeakReference(_tempoInstance);
 
-            TestCommand = new RelayCommand(
-                _tempoInstance.SetContent,
-                _tempoInstance.CheckEnabled);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                _tempoInstance = new TemporaryClass();
+                _reference = new WeakReference(_tempoInstance);
 
-            Assert.IsTrue(_reference.IsAlive);
+                TestCommand = new RelayCommand(
+                    _tempoInstance.SetContent,
+                    _tempoInstance.CheckEnabled);
 
-            _tempoInstance = null;
+                Assert.IsTrue(_reference.IsAlive);
+
+                _tempoInstance = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -200,15 +189,20 @@ namespace GalaSoft.MvvmLight.Test.Command
         [TestMethod]
         public void TestReleasingTargetForExecute()
         {
-            _tempoInstance = new TemporaryClass();
-            _reference = new WeakReference(_tempoInstance);
 
-            TestCommand = new RelayCommand(
-                _tempoInstance.SetContent);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                _tempoInstance = new TemporaryClass();
+                _reference = new WeakReference(_tempoInstance);
 
-            Assert.IsTrue(_reference.IsAlive);
+                TestCommand = new RelayCommand(
+                    _tempoInstance.SetContent);
 
-            _tempoInstance = null;
+                Assert.IsTrue(_reference.IsAlive);
+
+                _tempoInstance = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);

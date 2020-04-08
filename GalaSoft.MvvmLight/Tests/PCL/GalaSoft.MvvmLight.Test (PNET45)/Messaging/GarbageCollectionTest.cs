@@ -25,21 +25,26 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedMethod()
         {
-            Messenger.Reset();
 
-            _recipient = new TestRecipient(WeakActionTestCase.PublicNamedMethod);
-            _recipientReference = new WeakReference(_recipient);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
 
-            Assert.AreEqual(null, _recipient.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipient = new TestRecipient(WeakActionTestCase.PublicNamedMethod);
+                _recipientReference = new WeakReference(_recipient);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, _recipient.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, _recipient.Content);
+                Messenger.Default.Send(message);
 
-            _recipient = null;
+                Assert.AreEqual(message, _recipient.Content);
+
+                _recipient = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -48,22 +53,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedStaticMethod()
         {
-            Messenger.Reset();
-            TestRecipient.Reset();
 
-            _recipient = new TestRecipient(WeakActionTestCase.PublicStaticMethod);
-            _recipientReference = new WeakReference(_recipient);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipient.Reset();
 
-            Assert.AreEqual(null, TestRecipient.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipient = new TestRecipient(WeakActionTestCase.PublicStaticMethod);
+                _recipientReference = new WeakReference(_recipient);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipient.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipient.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipient = null;
+                Assert.AreEqual(message, TestRecipient.ContentStatic);
+
+                _recipient = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -72,21 +82,26 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedPrivateMethod()
         {
-            Messenger.Reset();
 
-            _recipient = new TestRecipient(WeakActionTestCase.PrivateNamedMethod);
-            _recipientReference = new WeakReference(_recipient);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
 
-            Assert.AreEqual(null, _recipient.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipient = new TestRecipient(WeakActionTestCase.PrivateNamedMethod);
+                _recipientReference = new WeakReference(_recipient);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, _recipient.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, _recipient.Content);
+                Messenger.Default.Send(message);
 
-            _recipient = null;
+                Assert.AreEqual(message, _recipient.Content);
+
+                _recipient = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -106,22 +121,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedPrivateStaticMethod()
         {
-            Messenger.Reset();
-            TestRecipient.Reset();
 
-            _recipient = new TestRecipient(WeakActionTestCase.PrivateStaticMethod);
-            _recipientReference = new WeakReference(_recipient);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipient.Reset();
 
-            Assert.AreEqual(null, TestRecipient.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipient = new TestRecipient(WeakActionTestCase.PrivateStaticMethod);
+                _recipientReference = new WeakReference(_recipient);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipient.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipient.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipient = null;
+                Assert.AreEqual(message, TestRecipient.ContentStatic);
+
+                _recipient = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -130,21 +150,26 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedInternalMethod()
         {
-            Messenger.Reset();
 
-            _recipient = new TestRecipient(WeakActionTestCase.InternalNamedMethod);
-            _recipientReference = new WeakReference(_recipient);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
 
-            Assert.AreEqual(null, _recipient.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipient = new TestRecipient(WeakActionTestCase.InternalNamedMethod);
+                _recipientReference = new WeakReference(_recipient);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, _recipient.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, _recipient.Content);
+                Messenger.Default.Send(message);
 
-            _recipient = null;
+                Assert.AreEqual(message, _recipient.Content);
+
+                _recipient = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -165,22 +190,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedInternalStaticMethod()
         {
-            Messenger.Reset();
-            TestRecipient.Reset();
 
-            _recipient = new TestRecipient(WeakActionTestCase.InternalStaticMethod);
-            _recipientReference = new WeakReference(_recipient);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipient.Reset();
 
-            Assert.AreEqual(null, TestRecipient.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipient = new TestRecipient(WeakActionTestCase.InternalStaticMethod);
+                _recipientReference = new WeakReference(_recipient);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipient.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipient.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipient = null;
+                Assert.AreEqual(message, TestRecipient.ContentStatic);
+
+                _recipient = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -189,21 +219,25 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForAnonymousMethod()
         {
-            Messenger.Reset();
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
 
-            _recipient = new TestRecipient(WeakActionTestCase.AnonymousMethod);
-            _recipientReference = new WeakReference(_recipient);
+                _recipient = new TestRecipient(WeakActionTestCase.AnonymousMethod);
+                _recipientReference = new WeakReference(_recipient);
 
-            Assert.AreEqual(null, _recipient.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                Assert.AreEqual(null, _recipient.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            const string message = "Hello world";
+                const string message = "Hello world";
 
-            Messenger.Default.Send(message);
+                Messenger.Default.Send(message);
 
-            Assert.AreEqual(message, _recipient.Content);
+                Assert.AreEqual(message, _recipient.Content);
 
-            _recipient = null;
+                _recipient = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -224,22 +258,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForAnonymousStaticMethod()
         {
-            Messenger.Reset();
-            TestRecipient.Reset();
 
-            _recipient = new TestRecipient(WeakActionTestCase.AnonymousStaticMethod);
-            _recipientReference = new WeakReference(_recipient);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipient.Reset();
 
-            Assert.AreEqual(null, TestRecipient.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipient = new TestRecipient(WeakActionTestCase.AnonymousStaticMethod);
+                _recipientReference = new WeakReference(_recipient);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipient.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipient.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipient = null;
+                Assert.AreEqual(message, TestRecipient.ContentStatic);
+
+                _recipient = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -248,21 +287,26 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedMethodInternal()
         {
-            Messenger.Reset();
 
-            _recipientInternal = new TestRecipientInternal(WeakActionTestCase.PublicNamedMethod);
-            _recipientReference = new WeakReference(_recipientInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
 
-            Assert.AreEqual(null, _recipientInternal.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientInternal = new TestRecipientInternal(WeakActionTestCase.PublicNamedMethod);
+                _recipientReference = new WeakReference(_recipientInternal);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, _recipientInternal.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, _recipientInternal.Content);
+                Messenger.Default.Send(message);
 
-            _recipientInternal = null;
+                Assert.AreEqual(message, _recipientInternal.Content);
+
+                _recipientInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -282,22 +326,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedStaticMethodInternal()
         {
-            Messenger.Reset();
-            TestRecipientInternal.Reset();
 
-            _recipientInternal = new TestRecipientInternal(WeakActionTestCase.PublicStaticMethod);
-            _recipientReference = new WeakReference(_recipientInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipientInternal.Reset();
 
-            Assert.AreEqual(null, TestRecipientInternal.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientInternal = new TestRecipientInternal(WeakActionTestCase.PublicStaticMethod);
+                _recipientReference = new WeakReference(_recipientInternal);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipientInternal.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipientInternal.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipientInternal = null;
+                Assert.AreEqual(message, TestRecipientInternal.ContentStatic);
+
+                _recipientInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -306,21 +355,26 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedPrivateMethodInternal()
         {
-            Messenger.Reset();
 
-            _recipientInternal = new TestRecipientInternal(WeakActionTestCase.PrivateNamedMethod);
-            _recipientReference = new WeakReference(_recipientInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
 
-            Assert.AreEqual(null, _recipientInternal.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientInternal = new TestRecipientInternal(WeakActionTestCase.PrivateNamedMethod);
+                _recipientReference = new WeakReference(_recipientInternal);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, _recipientInternal.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, _recipientInternal.Content);
+                Messenger.Default.Send(message);
 
-            _recipientInternal = null;
+                Assert.AreEqual(message, _recipientInternal.Content);
+
+                _recipientInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -340,22 +394,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedPrivateStaticMethodInternal()
         {
-            Messenger.Reset();
-            TestRecipientInternal.Reset();
 
-            _recipientInternal = new TestRecipientInternal(WeakActionTestCase.PrivateStaticMethod);
-            _recipientReference = new WeakReference(_recipientInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipientInternal.Reset();
 
-            Assert.AreEqual(null, TestRecipientInternal.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientInternal = new TestRecipientInternal(WeakActionTestCase.PrivateStaticMethod);
+                _recipientReference = new WeakReference(_recipientInternal);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipientInternal.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipientInternal.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipientInternal = null;
+                Assert.AreEqual(message, TestRecipientInternal.ContentStatic);
+
+                _recipientInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -364,21 +423,26 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedInternalMethodInternal()
         {
-            Messenger.Reset();
 
-            _recipientInternal = new TestRecipientInternal(WeakActionTestCase.InternalNamedMethod);
-            _recipientReference = new WeakReference(_recipientInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
 
-            Assert.AreEqual(null, _recipientInternal.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientInternal = new TestRecipientInternal(WeakActionTestCase.InternalNamedMethod);
+                _recipientReference = new WeakReference(_recipientInternal);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, _recipientInternal.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, _recipientInternal.Content);
+                Messenger.Default.Send(message);
 
-            _recipientInternal = null;
+                Assert.AreEqual(message, _recipientInternal.Content);
+
+                _recipientInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -399,22 +463,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedInternalStaticMethodInternal()
         {
-            Messenger.Reset();
-            TestRecipientInternal.Reset();
 
-            _recipientInternal = new TestRecipientInternal(WeakActionTestCase.InternalStaticMethod);
-            _recipientReference = new WeakReference(_recipientInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipientInternal.Reset();
 
-            Assert.AreEqual(null, TestRecipientInternal.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientInternal = new TestRecipientInternal(WeakActionTestCase.InternalStaticMethod);
+                _recipientReference = new WeakReference(_recipientInternal);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipientInternal.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipientInternal.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipientInternal = null;
+                Assert.AreEqual(message, TestRecipientInternal.ContentStatic);
+
+                _recipientInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -423,21 +492,26 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForAnonymousMethodInternal()
         {
-            Messenger.Reset();
 
-            _recipientInternal = new TestRecipientInternal(WeakActionTestCase.AnonymousMethod);
-            _recipientReference = new WeakReference(_recipientInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
 
-            Assert.AreEqual(null, _recipientInternal.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientInternal = new TestRecipientInternal(WeakActionTestCase.AnonymousMethod);
+                _recipientReference = new WeakReference(_recipientInternal);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, _recipientInternal.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, _recipientInternal.Content);
+                Messenger.Default.Send(message);
 
-            _recipientInternal = null;
+                Assert.AreEqual(message, _recipientInternal.Content);
+
+                _recipientInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -458,22 +532,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForAnonymousStaticMethodInternal()
         {
-            Messenger.Reset();
-            TestRecipientInternal.Reset();
 
-            _recipientInternal = new TestRecipientInternal(WeakActionTestCase.AnonymousStaticMethod);
-            _recipientReference = new WeakReference(_recipientInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipientInternal.Reset();
 
-            Assert.AreEqual(null, TestRecipientInternal.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientInternal = new TestRecipientInternal(WeakActionTestCase.AnonymousStaticMethod);
+                _recipientReference = new WeakReference(_recipientInternal);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipientInternal.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipientInternal.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipientInternal = null;
+                Assert.AreEqual(message, TestRecipientInternal.ContentStatic);
+
+                _recipientInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -482,22 +561,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedMethodPrivate()
         {
-            Messenger.Reset();
-            TestRecipientPrivate.Reset();
 
-            _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.PublicNamedMethod);
-            _recipientReference = new WeakReference(_recipientPrivate);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipientPrivate.Reset();
 
-            Assert.AreEqual(null, _recipientPrivate.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.PublicNamedMethod);
+                _recipientReference = new WeakReference(_recipientPrivate);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, _recipientPrivate.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, _recipientPrivate.Content);
+                Messenger.Default.Send(message);
 
-            _recipientPrivate = null;
+                Assert.AreEqual(message, _recipientPrivate.Content);
+
+                _recipientPrivate = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -517,22 +601,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedStaticMethodPrivate()
         {
-            Messenger.Reset();
-            TestRecipientPrivate.Reset();
 
-            _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.PublicStaticMethod);
-            _recipientReference = new WeakReference(_recipientPrivate);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipientPrivate.Reset();
 
-            Assert.AreEqual(null, TestRecipientPrivate.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.PublicStaticMethod);
+                _recipientReference = new WeakReference(_recipientPrivate);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipientPrivate.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipientPrivate.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipientPrivate = null;
+                Assert.AreEqual(message, TestRecipientPrivate.ContentStatic);
+
+                _recipientPrivate = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -541,21 +630,26 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedPrivateMethodPrivate()
         {
-            Messenger.Reset();
 
-            _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.PrivateNamedMethod);
-            _recipientReference = new WeakReference(_recipientPrivate);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
 
-            Assert.AreEqual(null, _recipientPrivate.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.PrivateNamedMethod);
+                _recipientReference = new WeakReference(_recipientPrivate);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, _recipientPrivate.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, _recipientPrivate.Content);
+                Messenger.Default.Send(message);
 
-            _recipientPrivate = null;
+                Assert.AreEqual(message, _recipientPrivate.Content);
+
+                _recipientPrivate = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -575,22 +669,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedPrivateStaticMethodPrivate()
         {
-            Messenger.Reset();
-            TestRecipientPrivate.Reset();
 
-            _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.PrivateStaticMethod);
-            _recipientReference = new WeakReference(_recipientPrivate);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipientPrivate.Reset();
 
-            Assert.AreEqual(null, TestRecipientPrivate.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.PrivateStaticMethod);
+                _recipientReference = new WeakReference(_recipientPrivate);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipientPrivate.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipientPrivate.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipientPrivate = null;
+                Assert.AreEqual(message, TestRecipientPrivate.ContentStatic);
+
+                _recipientPrivate = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -599,21 +698,26 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedInternalMethodPrivate()
         {
-            Messenger.Reset();
 
-            _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.InternalNamedMethod);
-            _recipientReference = new WeakReference(_recipientPrivate);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
 
-            Assert.AreEqual(null, _recipientPrivate.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.InternalNamedMethod);
+                _recipientReference = new WeakReference(_recipientPrivate);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, _recipientPrivate.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, _recipientPrivate.Content);
+                Messenger.Default.Send(message);
 
-            _recipientPrivate = null;
+                Assert.AreEqual(message, _recipientPrivate.Content);
+
+                _recipientPrivate = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -634,22 +738,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForNamedInternalStaticMethodPrivate()
         {
-            Messenger.Reset();
-            TestRecipientPrivate.Reset();
 
-            _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.InternalStaticMethod);
-            _recipientReference = new WeakReference(_recipientPrivate);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipientPrivate.Reset();
 
-            Assert.AreEqual(null, TestRecipientPrivate.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.InternalStaticMethod);
+                _recipientReference = new WeakReference(_recipientPrivate);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipientPrivate.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipientPrivate.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipientPrivate = null;
+                Assert.AreEqual(message, TestRecipientPrivate.ContentStatic);
+
+                _recipientPrivate = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -658,21 +767,26 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForAnonymousMethodPrivate()
         {
-            Messenger.Reset();
 
-            _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.AnonymousMethod);
-            _recipientReference = new WeakReference(_recipientPrivate);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
 
-            Assert.AreEqual(null, _recipientPrivate.Content);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.AnonymousMethod);
+                _recipientReference = new WeakReference(_recipientPrivate);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, _recipientPrivate.Content);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, _recipientPrivate.Content);
+                Messenger.Default.Send(message);
 
-            _recipientPrivate = null;
+                Assert.AreEqual(message, _recipientPrivate.Content);
+
+                _recipientPrivate = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -693,22 +807,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestGarbageCollectionForAnonymousStaticMethodPrivate()
         {
-            Messenger.Reset();
-            TestRecipientPrivate.Reset();
 
-            _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.AnonymousStaticMethod);
-            _recipientReference = new WeakReference(_recipientPrivate);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Messenger.Reset();
+                TestRecipientPrivate.Reset();
 
-            Assert.AreEqual(null, TestRecipientPrivate.ContentStatic);
-            Assert.IsTrue(_recipientReference.IsAlive);
+                _recipientPrivate = new TestRecipientPrivate(WeakActionTestCase.AnonymousStaticMethod);
+                _recipientReference = new WeakReference(_recipientPrivate);
 
-            const string message = "Hello world";
+                Assert.AreEqual(null, TestRecipientPrivate.ContentStatic);
+                Assert.IsTrue(_recipientReference.IsAlive);
 
-            Messenger.Default.Send(message);
+                const string message = "Hello world";
 
-            Assert.AreEqual(message, TestRecipientPrivate.ContentStatic);
+                Messenger.Default.Send(message);
 
-            _recipientPrivate = null;
+                Assert.AreEqual(message, TestRecipientPrivate.ContentStatic);
+
+                _recipientPrivate = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_recipientReference.IsAlive);
@@ -724,41 +843,17 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
         public class TestRecipient
         {
-            public string Content
-            {
-                get;
-                private set;
-            }
+            public string Content { get; private set; }
 
-            public static string ContentStatic
-            {
-                get;
-                private set;
-            }
+            public static string ContentStatic { get; private set; }
 
-            internal static string ContentInternalStatic
-            {
-                get;
-                private set;
-            }
+            internal static string ContentInternalStatic { get; private set; }
 
-            private static string ContentPrivateStatic
-            {
-                get;
-                set;
-            }
+            private static string ContentPrivateStatic { get; set; }
 
-            private string ContentPrivate
-            {
-                get;
-                set;
-            }
+            private string ContentPrivate { get; set; }
 
-            internal string ContentInternal
-            {
-                get;
-                private set;
-            }
+            internal string ContentInternal { get; private set; }
 
             public TestRecipient(WeakActionTestCase testCase)
             {
@@ -851,41 +946,17 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
         internal class TestRecipientInternal
         {
-            public string Content
-            {
-                get;
-                private set;
-            }
+            public string Content { get; private set; }
 
-            public static string ContentStatic
-            {
-                get;
-                private set;
-            }
+            public static string ContentStatic { get; private set; }
 
-            internal static string ContentInternalStatic
-            {
-                get;
-                private set;
-            }
+            internal static string ContentInternalStatic { get; private set; }
 
-            private static string ContentPrivateStatic
-            {
-                get;
-                set;
-            }
+            private static string ContentPrivateStatic { get; set; }
 
-            private string ContentPrivate
-            {
-                get;
-                set;
-            }
+            private string ContentPrivate { get; set; }
 
-            internal string ContentInternal
-            {
-                get;
-                private set;
-            }
+            internal string ContentInternal { get; private set; }
 
             public TestRecipientInternal(WeakActionTestCase testCase)
             {
@@ -978,41 +1049,17 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
         private class TestRecipientPrivate
         {
-            public string Content
-            {
-                get;
-                private set;
-            }
+            public string Content { get; private set; }
 
-            public static string ContentStatic
-            {
-                get;
-                private set;
-            }
+            public static string ContentStatic { get; private set; }
 
-            internal static string ContentInternalStatic
-            {
-                get;
-                private set;
-            }
+            internal static string ContentInternalStatic { get; private set; }
 
-            private static string ContentPrivateStatic
-            {
-                get;
-                set;
-            }
+            private static string ContentPrivateStatic { get; set; }
 
-            private string ContentPrivate
-            {
-                get;
-                set;
-            }
+            private string ContentPrivate { get; set; }
 
-            internal string ContentInternal
-            {
-                get;
-                private set;
-            }
+            internal string ContentInternal { get; private set; }
 
             public TestRecipientPrivate(WeakActionTestCase testCase)
             {

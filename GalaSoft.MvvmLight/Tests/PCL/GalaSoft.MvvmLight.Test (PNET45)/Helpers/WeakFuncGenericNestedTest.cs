@@ -21,29 +21,34 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassPublicNamedMethod()
         {
-            Reset();
 
-            const int index = 99;
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPublic = new PublicNestedTestClass<string>(index);
+                const int index = 99;
+                const string parameter = "My parameter";
 
-            _action = _itemPublic.GetFunc(WeakActionTestCase.PublicNamedMethod);
+                _itemPublic = new PublicNestedTestClass<string>(index);
 
-            _reference = new WeakReference(_itemPublic);
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetFunc(WeakActionTestCase.PublicNamedMethod);
 
-            var result = _action.Execute(parameter);
+                _reference = new WeakReference(_itemPublic);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Public + index + parameter,
-                PublicNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Public + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Public + index + parameter,
+                    PublicNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Public + index + parameter,
+                    result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -52,28 +57,33 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassPublicStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPublic = new PublicNestedTestClass<string>();
-            _reference = new WeakReference(_itemPublic);
+                const string parameter = "My parameter";
 
-            _action = _itemPublic.GetFunc(WeakActionTestCase.PublicStaticMethod);
+                _itemPublic = new PublicNestedTestClass<string>();
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetFunc(WeakActionTestCase.PublicStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.PublicStatic + parameter,
-                PublicNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.PublicStatic + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.PublicStatic + parameter,
+                    PublicNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.PublicStatic + parameter,
+                    result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -82,29 +92,34 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassInternalNamedMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPublic = new PublicNestedTestClass<string>(index);
-            _reference = new WeakReference(_itemPublic);
+                const string parameter = "My parameter";
+                const int index = 99;
 
-            _action = _itemPublic.GetFunc(WeakActionTestCase.InternalNamedMethod);
+                _itemPublic = new PublicNestedTestClass<string>(index);
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetFunc(WeakActionTestCase.InternalNamedMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Internal + index + parameter,
-                PublicNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Internal + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Internal + index + parameter,
+                    PublicNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Internal + index + parameter,
+                    result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -120,28 +135,33 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassInternalStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPublic = new PublicNestedTestClass<string>();
-            _reference = new WeakReference(_itemPublic);
+                const string parameter = "My parameter";
 
-            _action = _itemPublic.GetFunc(WeakActionTestCase.InternalStaticMethod);
+                _itemPublic = new PublicNestedTestClass<string>();
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetFunc(WeakActionTestCase.InternalStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.InternalStatic + parameter,
-                PublicNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.InternalStatic + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.InternalStatic + parameter,
+                    PublicNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.InternalStatic + parameter,
+                    result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -150,29 +170,34 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassPrivateNamedMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPublic = new PublicNestedTestClass<string>(index);
-            _reference = new WeakReference(_itemPublic);
+                const string parameter = "My parameter";
+                const int index = 99;
 
-            _action = _itemPublic.GetFunc(WeakActionTestCase.PrivateNamedMethod);
+                _itemPublic = new PublicNestedTestClass<string>(index);
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetFunc(WeakActionTestCase.PrivateNamedMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Private + index + parameter,
-                PublicNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Private + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Private + index + parameter,
+                    PublicNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.Private + index + parameter,
+                    result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -188,28 +213,33 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassPrivateStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPublic = new PublicNestedTestClass<string>();
-            _reference = new WeakReference(_itemPublic);
+                const string parameter = "My parameter";
 
-            _action = _itemPublic.GetFunc(WeakActionTestCase.PrivateStaticMethod);
+                _itemPublic = new PublicNestedTestClass<string>();
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetFunc(WeakActionTestCase.PrivateStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.PrivateStatic + parameter,
-                PublicNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.PrivateStatic + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.PrivateStatic + parameter,
+                    PublicNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + PublicNestedTestClass<string>.PrivateStatic + parameter,
+                    result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -218,29 +248,34 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassAnonymousMethod()
         {
-            Reset();
+            ScopeHelper.CallInOwnScope(() =>
+            {
 
-            const int index = 99;
-            const string parameter = "My parameter";
+                Reset();
 
-            _itemPublic = new PublicNestedTestClass<string>(index);
-            _reference = new WeakReference(_itemPublic);
+                const int index = 99;
+                const string parameter = "My parameter";
 
-            _action = _itemPublic.GetFunc(WeakActionTestCase.AnonymousMethod);
+                _itemPublic = new PublicNestedTestClass<string>(index);
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetFunc(WeakActionTestCase.AnonymousMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + index + parameter,
-                PublicNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + index + parameter,
+                    PublicNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + index + parameter,
+                    result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -256,28 +291,33 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassAnonymousStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPublic = new PublicNestedTestClass<string>();
-            _reference = new WeakReference(_itemPublic);
+                const string parameter = "My parameter";
 
-            _action = _itemPublic.GetFunc(WeakActionTestCase.AnonymousStaticMethod);
+                _itemPublic = new PublicNestedTestClass<string>();
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetFunc(WeakActionTestCase.AnonymousStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + parameter,
-                PublicNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PublicNestedTestClass<string>.Expected + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + parameter,
+                    PublicNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PublicNestedTestClass<string>.Expected + parameter,
+                    result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -286,29 +326,36 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassPublicNamedMethod()
         {
-            Reset();
 
-            const int index = 99;
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalNestedTestClass<string>(index);
+                const int index = 99;
+                const string parameter = "My parameter";
 
-            _action = _itemInternal.GetFunc(WeakActionTestCase.PublicNamedMethod);
+                _itemInternal = new InternalNestedTestClass<string>(index);
 
-            _reference = new WeakReference(_itemInternal);
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetFunc(WeakActionTestCase.PublicNamedMethod);
 
-            var result = _action.Execute(parameter);
+                _reference = new WeakReference(_itemInternal);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Public + index + parameter,
-                InternalNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Public + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Public + index +
+                    parameter,
+                    InternalNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Public + index +
+                    parameter,
+                    result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -324,28 +371,33 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassPublicStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalNestedTestClass<string>();
-            _reference = new WeakReference(_itemInternal);
+                const string parameter = "My parameter";
 
-            _action = _itemInternal.GetFunc(WeakActionTestCase.PublicStaticMethod);
+                _itemInternal = new InternalNestedTestClass<string>();
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetFunc(WeakActionTestCase.PublicStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.PublicStatic + parameter,
-                InternalNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.PublicStatic + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.PublicStatic + parameter,
+                    InternalNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.PublicStatic + parameter,
+                    result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -354,29 +406,36 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassInternalNamedMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalNestedTestClass<string>(index);
-            _reference = new WeakReference(_itemInternal);
+                const string parameter = "My parameter";
+                const int index = 99;
 
-            _action = _itemInternal.GetFunc(WeakActionTestCase.InternalNamedMethod);
+                _itemInternal = new InternalNestedTestClass<string>(index);
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetFunc(WeakActionTestCase.InternalNamedMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Internal + index + parameter,
-                InternalNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Internal + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Internal + index +
+                    parameter,
+                    InternalNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Internal + index +
+                    parameter,
+                    result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -392,28 +451,35 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassInternalStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalNestedTestClass<string>();
-            _reference = new WeakReference(_itemInternal);
+                const string parameter = "My parameter";
 
-            _action = _itemInternal.GetFunc(WeakActionTestCase.InternalStaticMethod);
+                _itemInternal = new InternalNestedTestClass<string>();
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetFunc(WeakActionTestCase.InternalStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.InternalStatic + parameter,
-                InternalNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.InternalStatic + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.InternalStatic +
+                    parameter,
+                    InternalNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.InternalStatic +
+                    parameter,
+                    result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -422,29 +488,36 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassPrivateNamedMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalNestedTestClass<string>(index);
-            _reference = new WeakReference(_itemInternal);
+                const string parameter = "My parameter";
+                const int index = 99;
 
-            _action = _itemInternal.GetFunc(WeakActionTestCase.PrivateNamedMethod);
+                _itemInternal = new InternalNestedTestClass<string>(index);
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetFunc(WeakActionTestCase.PrivateNamedMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Private + index + parameter,
-                InternalNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Private + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Private + index +
+                    parameter,
+                    InternalNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.Private + index +
+                    parameter,
+                    result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -460,28 +533,35 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassPrivateStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalNestedTestClass<string>();
-            _reference = new WeakReference(_itemInternal);
+                const string parameter = "My parameter";
 
-            _action = _itemInternal.GetFunc(WeakActionTestCase.PrivateStaticMethod);
+                _itemInternal = new InternalNestedTestClass<string>();
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetFunc(WeakActionTestCase.PrivateStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.PrivateStatic + parameter,
-                InternalNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.PrivateStatic + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.PrivateStatic +
+                    parameter,
+                    InternalNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + InternalNestedTestClass<string>.PrivateStatic +
+                    parameter,
+                    result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -490,29 +570,34 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassAnonymousMethod()
         {
-            Reset();
 
-            const int index = 99;
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalNestedTestClass<string>(index);
-            _reference = new WeakReference(_itemInternal);
+                const int index = 99;
+                const string parameter = "My parameter";
 
-            _action = _itemInternal.GetFunc(WeakActionTestCase.AnonymousMethod);
+                _itemInternal = new InternalNestedTestClass<string>(index);
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetFunc(WeakActionTestCase.AnonymousMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + index + parameter,
-                InternalNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + index + parameter,
+                    InternalNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + index + parameter,
+                    result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -528,28 +613,33 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassAnonymousStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalNestedTestClass<string>();
-            _reference = new WeakReference(_itemInternal);
+                const string parameter = "My parameter";
 
-            _action = _itemInternal.GetFunc(WeakActionTestCase.AnonymousStaticMethod);
+                _itemInternal = new InternalNestedTestClass<string>();
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetFunc(WeakActionTestCase.AnonymousStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + parameter,
-                InternalNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                InternalNestedTestClass<string>.Expected + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + parameter,
+                    InternalNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    InternalNestedTestClass<string>.Expected + parameter,
+                    result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -558,29 +648,34 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPrivateClassPublicNamedMethod()
         {
-            Reset();
 
-            const int index = 99;
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPrivate = new PrivateNestedTestClass<string>(index);
+                const int index = 99;
+                const string parameter = "My parameter";
 
-            _action = _itemPrivate.GetFunc(WeakActionTestCase.PublicNamedMethod);
+                _itemPrivate = new PrivateNestedTestClass<string>(index);
 
-            _reference = new WeakReference(_itemPrivate);
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPrivate.GetFunc(WeakActionTestCase.PublicNamedMethod);
 
-            var result = _action.Execute(parameter);
+                _reference = new WeakReference(_itemPrivate);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Public + index + parameter,
-                PrivateNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Public + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPrivate = null;
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Public + index + parameter,
+                    PrivateNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Public + index + parameter,
+                    result);
+
+                _itemPrivate = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -596,28 +691,33 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPrivateClassPublicStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPrivate = new PrivateNestedTestClass<string>();
-            _reference = new WeakReference(_itemPrivate);
+                const string parameter = "My parameter";
 
-            _action = _itemPrivate.GetFunc(WeakActionTestCase.PublicStaticMethod);
+                _itemPrivate = new PrivateNestedTestClass<string>();
+                _reference = new WeakReference(_itemPrivate);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPrivate.GetFunc(WeakActionTestCase.PublicStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.PublicStatic + parameter,
-                PrivateNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.PublicStatic + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPrivate = null;
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.PublicStatic + parameter,
+                    PrivateNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.PublicStatic + parameter,
+                    result);
+
+                _itemPrivate = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -626,29 +726,36 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPrivateClassInternalNamedMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPrivate = new PrivateNestedTestClass<string>(index);
-            _reference = new WeakReference(_itemPrivate);
+                const string parameter = "My parameter";
+                const int index = 99;
 
-            _action = _itemPrivate.GetFunc(WeakActionTestCase.InternalNamedMethod);
+                _itemPrivate = new PrivateNestedTestClass<string>(index);
+                _reference = new WeakReference(_itemPrivate);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPrivate.GetFunc(WeakActionTestCase.InternalNamedMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Internal + index + parameter,
-                PrivateNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Internal + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPrivate = null;
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Internal + index +
+                    parameter,
+                    PrivateNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Internal + index +
+                    parameter,
+                    result);
+
+                _itemPrivate = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -664,28 +771,33 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPrivateClassInternalStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPrivate = new PrivateNestedTestClass<string>();
-            _reference = new WeakReference(_itemPrivate);
+                const string parameter = "My parameter";
 
-            _action = _itemPrivate.GetFunc(WeakActionTestCase.InternalStaticMethod);
+                _itemPrivate = new PrivateNestedTestClass<string>();
+                _reference = new WeakReference(_itemPrivate);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPrivate.GetFunc(WeakActionTestCase.InternalStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.InternalStatic + parameter,
-                PrivateNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.InternalStatic + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPrivate = null;
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.InternalStatic + parameter,
+                    PrivateNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.InternalStatic + parameter,
+                    result);
+
+                _itemPrivate = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -694,29 +806,36 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPrivateClassPrivateNamedMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPrivate = new PrivateNestedTestClass<string>(index);
-            _reference = new WeakReference(_itemPrivate);
+                const string parameter = "My parameter";
+                const int index = 99;
 
-            _action = _itemPrivate.GetFunc(WeakActionTestCase.PrivateNamedMethod);
+                _itemPrivate = new PrivateNestedTestClass<string>(index);
+                _reference = new WeakReference(_itemPrivate);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPrivate.GetFunc(WeakActionTestCase.PrivateNamedMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Private + index + parameter,
-                PrivateNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Private + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPrivate = null;
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Private + index +
+                    parameter,
+                    PrivateNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.Private + index +
+                    parameter,
+                    result);
+
+                _itemPrivate = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -732,28 +851,33 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPrivateClassPrivateStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPrivate = new PrivateNestedTestClass<string>();
-            _reference = new WeakReference(_itemPrivate);
+                const string parameter = "My parameter";
 
-            _action = _itemPrivate.GetFunc(WeakActionTestCase.PrivateStaticMethod);
+                _itemPrivate = new PrivateNestedTestClass<string>();
+                _reference = new WeakReference(_itemPrivate);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPrivate.GetFunc(WeakActionTestCase.PrivateStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.PrivateStatic + parameter,
-                PrivateNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.PrivateStatic + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPrivate = null;
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.PrivateStatic + parameter,
+                    PrivateNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + PrivateNestedTestClass<string>.PrivateStatic + parameter,
+                    result);
+
+                _itemPrivate = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -762,29 +886,34 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPrivateClassAnonymousMethod()
         {
-            Reset();
 
-            const int index = 99;
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPrivate = new PrivateNestedTestClass<string>(index);
-            _reference = new WeakReference(_itemPrivate);
+                const int index = 99;
+                const string parameter = "My parameter";
 
-            _action = _itemPrivate.GetFunc(WeakActionTestCase.AnonymousMethod);
+                _itemPrivate = new PrivateNestedTestClass<string>(index);
+                _reference = new WeakReference(_itemPrivate);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPrivate.GetFunc(WeakActionTestCase.AnonymousMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + index + parameter,
-                PrivateNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + index + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPrivate = null;
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + index + parameter,
+                    PrivateNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + index + parameter,
+                    result);
+
+                _itemPrivate = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -800,28 +929,33 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPrivateClassAnonymousStaticMethod()
         {
-            Reset();
 
-            const string parameter = "My parameter";
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPrivate = new PrivateNestedTestClass<string>();
-            _reference = new WeakReference(_itemPrivate);
+                const string parameter = "My parameter";
 
-            _action = _itemPrivate.GetFunc(WeakActionTestCase.AnonymousStaticMethod);
+                _itemPrivate = new PrivateNestedTestClass<string>();
+                _reference = new WeakReference(_itemPrivate);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPrivate.GetFunc(WeakActionTestCase.AnonymousStaticMethod);
 
-            var result = _action.Execute(parameter);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + parameter,
-                PrivateNestedTestClass<string>.Result);
-            Assert.AreEqual(
-                PrivateNestedTestClass<string>.Expected + parameter,
-                result);
+                var result = _action.Execute(parameter);
 
-            _itemPrivate = null;
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + parameter,
+                    PrivateNestedTestClass<string>.Result);
+                Assert.AreEqual(
+                    PrivateNestedTestClass<string>.Expected + parameter,
+                    result);
+
+                _itemPrivate = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -847,11 +981,7 @@ namespace GalaSoft.MvvmLight.Test.Helpers
             public const string InternalStatic = "InternalStatic";
             public const string PrivateStatic = "PrivateStatic";
 
-            public static string Result
-            {
-                get;
-                private set;
-            }
+            public static string Result { get; private set; }
 
             public PublicNestedTestClass()
             {
@@ -1001,11 +1131,7 @@ namespace GalaSoft.MvvmLight.Test.Helpers
             public const string PublicStatic = "PublicStatic";
             public const string PrivateStatic = "PrivateStatic";
 
-            public static string Result
-            {
-                get;
-                private set;
-            }
+            public static string Result { get; private set; }
 
             public InternalNestedTestClass()
             {
@@ -1125,11 +1251,7 @@ namespace GalaSoft.MvvmLight.Test.Helpers
             public const string PublicStatic = "PublicStatic";
             public const string PrivateStatic = "PrivateStatic";
 
-            public static string Result
-            {
-                get;
-                private set;
-            }
+            public static string Result { get; private set; }
 
             public PrivateNestedTestClass()
             {

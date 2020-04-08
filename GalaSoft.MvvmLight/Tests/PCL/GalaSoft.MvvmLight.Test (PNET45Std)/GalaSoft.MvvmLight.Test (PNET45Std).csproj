@@ -109,6 +109,9 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\Helpers\PublicTestClassWithResult.cs">
       <Link>Helpers\PublicTestClassWithResult.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\Helpers\ScopeHelper.cs">
+      <Link>Helpers\ScopeHelper.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\Helpers\WeakActionGenericNestedTest.cs">
       <Link>Helpers\WeakActionGenericNestedTest.cs</Link>
     </Compile>

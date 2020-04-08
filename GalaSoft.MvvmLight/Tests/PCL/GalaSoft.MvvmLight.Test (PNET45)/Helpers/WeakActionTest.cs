@@ -22,25 +22,30 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassPublicNamedMethod()
         {
-            Reset();
 
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPublic = new PublicTestClass(index);
+                const int index = 99;
 
-            _action = _itemPublic.GetAction(WeakActionTestCase.PublicNamedMethod);
+                _itemPublic = new PublicTestClass(index);
 
-            _reference = new WeakReference(_itemPublic);
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetAction(WeakActionTestCase.PublicNamedMethod);
 
-            _action.Execute();
+                _reference = new WeakReference(_itemPublic);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicTestClass.Expected + PublicTestClass.Public + index,
-                PublicTestClass.Result);
+                _action.Execute();
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicTestClass.Expected + PublicTestClass.Public + index,
+                    PublicTestClass.Result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -49,23 +54,28 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassPublicStaticMethod()
         {
-            Reset();
 
-            _itemPublic = new PublicTestClass();
-            _reference = new WeakReference(_itemPublic);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _action = _itemPublic.GetAction(WeakActionTestCase.PublicStaticMethod);
+                _itemPublic = new PublicTestClass();
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetAction(WeakActionTestCase.PublicStaticMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicTestClass.Expected + PublicTestClass.PublicStatic,
-                PublicTestClass.Result);
+                _action.Execute();
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicTestClass.Expected + PublicTestClass.PublicStatic,
+                    PublicTestClass.Result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -74,25 +84,30 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassInternalNamedMethod()
         {
-            Reset();
 
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPublic = new PublicTestClass(index);
-            _reference = new WeakReference(_itemPublic);
+                const int index = 99;
 
-            _action = _itemPublic.GetAction(WeakActionTestCase.InternalNamedMethod);
+                _itemPublic = new PublicTestClass(index);
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetAction(WeakActionTestCase.InternalNamedMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicTestClass.Expected + PublicTestClass.Internal + index,
-                PublicTestClass.Result);
+                _action.Execute();
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicTestClass.Expected + PublicTestClass.Internal + index,
+                    PublicTestClass.Result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -108,23 +123,28 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassInternalStaticMethod()
         {
-            Reset();
 
-            _itemPublic = new PublicTestClass();
-            _reference = new WeakReference(_itemPublic);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _action = _itemPublic.GetAction(WeakActionTestCase.InternalStaticMethod);
+                _itemPublic = new PublicTestClass();
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetAction(WeakActionTestCase.InternalStaticMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicTestClass.Expected + PublicTestClass.InternalStatic,
-                PublicTestClass.Result);
+                _action.Execute();
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicTestClass.Expected + PublicTestClass.InternalStatic,
+                    PublicTestClass.Result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -133,25 +153,30 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassPrivateNamedMethod()
         {
-            Reset();
 
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPublic = new PublicTestClass(index);
-            _reference = new WeakReference(_itemPublic);
+                const int index = 99;
 
-            _action = _itemPublic.GetAction(WeakActionTestCase.PrivateNamedMethod);
+                _itemPublic = new PublicTestClass(index);
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetAction(WeakActionTestCase.PrivateNamedMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicTestClass.Expected + PublicTestClass.Private + index,
-                PublicTestClass.Result);
+                _action.Execute();
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicTestClass.Expected + PublicTestClass.Private + index,
+                    PublicTestClass.Result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -167,23 +192,28 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassPrivateStaticMethod()
         {
-            Reset();
 
-            _itemPublic = new PublicTestClass();
-            _reference = new WeakReference(_itemPublic);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _action = _itemPublic.GetAction(WeakActionTestCase.PrivateStaticMethod);
+                _itemPublic = new PublicTestClass();
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetAction(WeakActionTestCase.PrivateStaticMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicTestClass.Expected + PublicTestClass.PrivateStatic,
-                PublicTestClass.Result);
+                _action.Execute();
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicTestClass.Expected + PublicTestClass.PrivateStatic,
+                    PublicTestClass.Result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -192,25 +222,30 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestPublicClassAnonymousMethod()
         {
-            Reset();
 
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemPublic = new PublicTestClass(index);
-            _reference = new WeakReference(_itemPublic);
+                const int index = 99;
 
-            _action = _itemPublic.GetAction(WeakActionTestCase.AnonymousMethod);
+                _itemPublic = new PublicTestClass(index);
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetAction(WeakActionTestCase.AnonymousMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicTestClass.Expected + index,
-                PublicTestClass.Result);
+                _action.Execute();
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicTestClass.Expected + index,
+                    PublicTestClass.Result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -228,21 +263,26 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         {
             Reset();
 
-            _itemPublic = new PublicTestClass();
-            _reference = new WeakReference(_itemPublic);
 
-            _action = _itemPublic.GetAction(WeakActionTestCase.AnonymousStaticMethod);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                _itemPublic = new PublicTestClass();
+                _reference = new WeakReference(_itemPublic);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemPublic.GetAction(WeakActionTestCase.AnonymousStaticMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                PublicTestClass.Expected,
-                PublicTestClass.Result);
+                _action.Execute();
 
-            _itemPublic = null;
+                Assert.AreEqual(
+                    PublicTestClass.Expected,
+                    PublicTestClass.Result);
+
+                _itemPublic = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -251,25 +291,30 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassPublicNamedMethod()
         {
-            Reset();
 
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalTestClass(index);
+                const int index = 99;
 
-            _action = _itemInternal.GetAction(WeakActionTestCase.PublicNamedMethod);
+                _itemInternal = new InternalTestClass(index);
 
-            _reference = new WeakReference(_itemInternal);
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetAction(WeakActionTestCase.PublicNamedMethod);
 
-            _action.Execute();
+                _reference = new WeakReference(_itemInternal);
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalTestClass.Expected + InternalTestClass.Public + index,
-                InternalTestClass.Result);
+                _action.Execute();
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalTestClass.Expected + InternalTestClass.Public + index,
+                    InternalTestClass.Result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -285,23 +330,28 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassPublicStaticMethod()
         {
-            Reset();
 
-            _itemInternal = new InternalTestClass();
-            _reference = new WeakReference(_itemInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _action = _itemInternal.GetAction(WeakActionTestCase.PublicStaticMethod);
+                _itemInternal = new InternalTestClass();
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetAction(WeakActionTestCase.PublicStaticMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalTestClass.Expected + InternalTestClass.PublicStatic,
-                InternalTestClass.Result);
+                _action.Execute();
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalTestClass.Expected + InternalTestClass.PublicStatic,
+                    InternalTestClass.Result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -310,25 +360,30 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassInternalNamedMethod()
         {
-            Reset();
 
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalTestClass(index);
-            _reference = new WeakReference(_itemInternal);
+                const int index = 99;
 
-            _action = _itemInternal.GetAction(WeakActionTestCase.InternalNamedMethod);
+                _itemInternal = new InternalTestClass(index);
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetAction(WeakActionTestCase.InternalNamedMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalTestClass.Expected + InternalTestClass.Internal + index,
-                InternalTestClass.Result);
+                _action.Execute();
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalTestClass.Expected + InternalTestClass.Internal + index,
+                    InternalTestClass.Result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -344,23 +399,28 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassInternalStaticMethod()
         {
-            Reset();
 
-            _itemInternal = new InternalTestClass();
-            _reference = new WeakReference(_itemInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _action = _itemInternal.GetAction(WeakActionTestCase.InternalStaticMethod);
+                _itemInternal = new InternalTestClass();
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetAction(WeakActionTestCase.InternalStaticMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalTestClass.Expected + InternalTestClass.InternalStatic,
-                InternalTestClass.Result);
+                _action.Execute();
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalTestClass.Expected + InternalTestClass.InternalStatic,
+                    InternalTestClass.Result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -369,25 +429,30 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassPrivateNamedMethod()
         {
-            Reset();
 
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalTestClass(index);
-            _reference = new WeakReference(_itemInternal);
+                const int index = 99;
 
-            _action = _itemInternal.GetAction(WeakActionTestCase.PrivateNamedMethod);
+                _itemInternal = new InternalTestClass(index);
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetAction(WeakActionTestCase.PrivateNamedMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalTestClass.Expected + InternalTestClass.Private + index,
-                InternalTestClass.Result);
+                _action.Execute();
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalTestClass.Expected + InternalTestClass.Private + index,
+                    InternalTestClass.Result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -403,23 +468,28 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassPrivateStaticMethod()
         {
-            Reset();
 
-            _itemInternal = new InternalTestClass();
-            _reference = new WeakReference(_itemInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _action = _itemInternal.GetAction(WeakActionTestCase.PrivateStaticMethod);
+                _itemInternal = new InternalTestClass();
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetAction(WeakActionTestCase.PrivateStaticMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalTestClass.Expected + InternalTestClass.PrivateStatic,
-                InternalTestClass.Result);
+                _action.Execute();
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalTestClass.Expected + InternalTestClass.PrivateStatic,
+                    InternalTestClass.Result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -428,25 +498,30 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassAnonymousMethod()
         {
-            Reset();
 
-            const int index = 99;
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _itemInternal = new InternalTestClass(index);
-            _reference = new WeakReference(_itemInternal);
+                const int index = 99;
 
-            _action = _itemInternal.GetAction(WeakActionTestCase.AnonymousMethod);
+                _itemInternal = new InternalTestClass(index);
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetAction(WeakActionTestCase.AnonymousMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalTestClass.Expected + index,
-                InternalTestClass.Result);
+                _action.Execute();
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalTestClass.Expected + index,
+                    InternalTestClass.Result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
 #if SILVERLIGHT
@@ -462,23 +537,28 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestInternalClassAnonymousStaticMethod()
         {
-            Reset();
 
-            _itemInternal = new InternalTestClass();
-            _reference = new WeakReference(_itemInternal);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _action = _itemInternal.GetAction(WeakActionTestCase.AnonymousStaticMethod);
+                _itemInternal = new InternalTestClass();
+                _reference = new WeakReference(_itemInternal);
 
-            Assert.IsTrue(_reference.IsAlive);
-            Assert.IsTrue(_action.IsAlive);
+                _action = _itemInternal.GetAction(WeakActionTestCase.AnonymousStaticMethod);
 
-            _action.Execute();
+                Assert.IsTrue(_reference.IsAlive);
+                Assert.IsTrue(_action.IsAlive);
 
-            Assert.AreEqual(
-                InternalTestClass.Expected,
-                InternalTestClass.Result);
+                _action.Execute();
 
-            _itemInternal = null;
+                Assert.AreEqual(
+                    InternalTestClass.Expected,
+                    InternalTestClass.Result);
+
+                _itemInternal = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -503,16 +583,23 @@ namespace GalaSoft.MvvmLight.Test.Helpers
         [TestMethod]
         public void TestStaticMethodWithNonNullTarget()
         {
-            Reset();
 
-            _common = new CommonTestClass();
-            _reference = new WeakReference(_common);
-            Assert.IsTrue(_reference.IsAlive);
+            WeakAction action = null;
 
-            var action = new WeakAction(_common, DoStuffStatic);
-            Assert.IsTrue(action.IsAlive);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                Reset();
 
-            _common = null;
+                _common = new CommonTestClass();
+                _reference = new WeakReference(_common);
+                Assert.IsTrue(_reference.IsAlive);
+
+                action = new WeakAction(_common, DoStuffStatic);
+                Assert.IsTrue(action.IsAlive);
+
+                _common = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);

@@ -75,6 +75,7 @@
     <Compile Include="Helpers\PublicTestClassGeneric.cs" />
     <Compile Include="Helpers\PublicTestClassGenericWithResult.cs" />
     <Compile Include="Helpers\PublicTestClassWithResult.cs" />
+    <Compile Include="Helpers\ScopeHelper.cs" />
     <Compile Include="Helpers\StaTestClassAttribute.cs" />
     <Compile Include="Helpers\StaTestMethodAttribute.cs" />
     <Compile Include="Helpers\WeakActionGenericNestedTest.cs" />

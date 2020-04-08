@@ -20,19 +20,13 @@ namespace GalaSoft.MvvmLight.Test.Command
         private WeakReference _reference;
         private TemporaryClass _tempoInstance;
 
-        public RelayCommand<string> TestCommand
-        {
-            get;
-            private set;
-        }
+        public RelayCommand<string> TestCommand { get; private set; }
 
         [TestMethod]
         public void TestCanExecuteChanged()
         {
             var command = new RelayCommand<string>(
-                p =>
-                {
-                },
+                p => { },
                 p => true);
 
             var canExecuteChangedCalled = 0;
@@ -74,9 +68,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         public void TestCanExecute()
         {
             var command = new RelayCommand<string>(
-                p =>
-                {
-                },
+                p => { },
                 p => p == "CanExecute");
 
             Assert.AreEqual(true, command.CanExecute("CanExecute"));
@@ -87,9 +79,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         public void TestCanExecuteWithInvalidParameterType()
         {
             var command = new RelayCommand<string>(
-                p =>
-                {
-                },
+                p => { },
                 p => p == "CanExecute");
 
             var result = command.CanExecute(DateTime.Now);
@@ -100,9 +90,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         public void TestCanExecuteNull()
         {
             var command = new RelayCommand<string>(
-                p =>
-                {
-                });
+                p => { });
 
             Assert.AreEqual(true, command.CanExecute("Hello"));
         }
@@ -111,17 +99,13 @@ namespace GalaSoft.MvvmLight.Test.Command
         public void TestCanExecuteNullParameter()
         {
             var command = new RelayCommand<string>(
-                p =>
-                {
-                },
+                p => { },
                 p => false);
 
             Assert.AreEqual(false, command.CanExecute(null));
 
             var command2 = new RelayCommand<string>(
-                p =>
-                {
-                },
+                p => { },
                 p => true);
 
             Assert.AreEqual(true, command2.CanExecute(null));
@@ -161,10 +145,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             const string parameter = "Parameter";
 
             var command = new RelayCommand<string>(
-                p =>
-                {
-                    dummy = executed + p;
-                });
+                p => { dummy = executed + p; });
 
             command.Execute(parameter);
 
@@ -172,7 +153,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         private static string _dummyStatic;
-        
+
         [TestMethod]
         public void TestExecuteStatic()
         {
@@ -181,10 +162,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             const string parameter = "Parameter";
 
             var command = new RelayCommand<string>(
-                p =>
-                {
-                    _dummyStatic = executed + p;
-                });
+                p => { _dummyStatic = executed + p; });
 
             command.Execute(parameter);
 
@@ -215,16 +193,21 @@ namespace GalaSoft.MvvmLight.Test.Command
         [TestMethod]
         public void TestReleasingTargetForCanExecuteGeneric()
         {
-            _tempoInstance = new TemporaryClass();
-            _reference = new WeakReference(_tempoInstance);
 
-            TestCommand = new RelayCommand<string>(
-                _tempoInstance.SetContent,
-                _tempoInstance.CheckEnabled);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                _tempoInstance = new TemporaryClass();
+                _reference = new WeakReference(_tempoInstance);
 
-            Assert.IsTrue(_reference.IsAlive);
+                TestCommand = new RelayCommand<string>(
+                    _tempoInstance.SetContent,
+                    _tempoInstance.CheckEnabled);
 
-            _tempoInstance = null;
+                Assert.IsTrue(_reference.IsAlive);
+
+                _tempoInstance = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -233,14 +216,19 @@ namespace GalaSoft.MvvmLight.Test.Command
         [TestMethod]
         public void TestReleasingTargetForCanExecuteGenericPrivate()
         {
-            _tempoInstance = new TemporaryClass();
-            _reference = new WeakReference(_tempoInstance);
 
-            _tempoInstance.CreateCommandGenericCanExecutePrivate();
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                _tempoInstance = new TemporaryClass();
+                _reference = new WeakReference(_tempoInstance);
 
-            Assert.IsTrue(_reference.IsAlive);
+                _tempoInstance.CreateCommandGenericCanExecutePrivate();
 
-            _tempoInstance = null;
+                Assert.IsTrue(_reference.IsAlive);
+
+                _tempoInstance = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -249,14 +237,19 @@ namespace GalaSoft.MvvmLight.Test.Command
         [TestMethod]
         public void TestReleasingTargetForCanExecuteGenericInternal()
         {
-            _tempoInstance = new TemporaryClass();
-            _reference = new WeakReference(_tempoInstance);
 
-            _tempoInstance.CreateCommandGenericCanExecuteInternal();
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                _tempoInstance = new TemporaryClass();
+                _reference = new WeakReference(_tempoInstance);
 
-            Assert.IsTrue(_reference.IsAlive);
+                _tempoInstance.CreateCommandGenericCanExecuteInternal();
 
-            _tempoInstance = null;
+                Assert.IsTrue(_reference.IsAlive);
+
+                _tempoInstance = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -265,15 +258,20 @@ namespace GalaSoft.MvvmLight.Test.Command
         [TestMethod]
         public void TestReleasingTargetForExecuteGeneric()
         {
-            _tempoInstance = new TemporaryClass();
-            _reference = new WeakReference(_tempoInstance);
 
-            TestCommand = new RelayCommand<string>(
-                _tempoInstance.SetContent);
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                _tempoInstance = new TemporaryClass();
+                _reference = new WeakReference(_tempoInstance);
 
-            Assert.IsTrue(_reference.IsAlive);
+                TestCommand = new RelayCommand<string>(
+                    _tempoInstance.SetContent);
 
-            _tempoInstance = null;
+                Assert.IsTrue(_reference.IsAlive);
+
+                _tempoInstance = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -282,14 +280,19 @@ namespace GalaSoft.MvvmLight.Test.Command
         [TestMethod]
         public void TestReleasingTargetForExecuteGenericPrivate()
         {
-            _tempoInstance = new TemporaryClass();
-            _reference = new WeakReference(_tempoInstance);
 
-            _tempoInstance.CreateCommandGenericPrivate();
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                _tempoInstance = new TemporaryClass();
+                _reference = new WeakReference(_tempoInstance);
 
-            Assert.IsTrue(_reference.IsAlive);
+                _tempoInstance.CreateCommandGenericPrivate();
 
-            _tempoInstance = null;
+                Assert.IsTrue(_reference.IsAlive);
+
+                _tempoInstance = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
@@ -298,14 +301,19 @@ namespace GalaSoft.MvvmLight.Test.Command
         [TestMethod]
         public void TestReleasingTargetForExecuteGenericInternal()
         {
-            _tempoInstance = new TemporaryClass();
-            _reference = new WeakReference(_tempoInstance);
 
-            _tempoInstance.CreateCommandGenericInternal();
+            ScopeHelper.CallInOwnScope(() =>
+            {
+                _tempoInstance = new TemporaryClass();
+                _reference = new WeakReference(_tempoInstance);
 
-            Assert.IsTrue(_reference.IsAlive);
+                _tempoInstance.CreateCommandGenericInternal();
 
-            _tempoInstance = null;
+                Assert.IsTrue(_reference.IsAlive);
+
+                _tempoInstance = null;
+            });
+
             GC.Collect();
 
             Assert.IsFalse(_reference.IsAlive);
