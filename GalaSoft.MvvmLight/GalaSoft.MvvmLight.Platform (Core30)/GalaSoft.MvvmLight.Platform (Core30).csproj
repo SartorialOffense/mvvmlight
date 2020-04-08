@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AssemblyName>GalaSoft.MvvmLight.Platform</AssemblyName>
+    <RootNamespace>GalaSoft.MvvmLight.Platform</RootNamespace>
+    <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
+    <UseWPF>true</UseWPF>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <OutputType>Library</OutputType>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>GalaSoft.MvvmLight.Platform (Core30).snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;CORE30</DefineConstants>
+    <DocumentationFile>bin\Debug\netcoreapp3.0\GalaSoft.MvvmLight.Platform.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;CORE30</DefineConstants>
+    <DocumentationFile>bin\Release\netcoreapp3.0\GalaSoft.MvvmLight.Platform.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Command\RelayCommand.cs" Link="Command\RelayCommand.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Command\RelayCommandGeneric.cs" Link="Command\RelayCommandGeneric.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight.Platform (NET45)\Threading\DispatcherHelper.cs" Link="Threading\DispatcherHelper.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight.Platform (NET45)\Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\GalaSoft.MvvmLight (PCL)\License.txt" Link="License.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommonServiceLocator" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\GalaSoft.MvvmLight (PCL)\License.txt" Link="License.txt" />
+  </ItemGroup>
+
+</Project>
