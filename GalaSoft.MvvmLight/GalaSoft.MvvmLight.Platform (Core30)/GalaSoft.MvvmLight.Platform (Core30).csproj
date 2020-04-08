@@ -29,6 +29,8 @@
     <Compile Include="..\GalaSoft.MvvmLight (PCL)\Command\RelayCommandGeneric.cs" Link="Command\RelayCommandGeneric.cs" />
     <Compile Include="..\GalaSoft.MvvmLight.Platform (NET45)\Threading\DispatcherHelper.cs" Link="Threading\DispatcherHelper.cs" />
     <Compile Include="..\GalaSoft.MvvmLight.Platform (NET45)\Properties\AssemblyInfo.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight.Platform (NET45)\Command\EventToCommand.cs" Link="Command\EventToCommand.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight.Platform (NET45)\Command\IEventArgsConverter.cs" Link="Command\IEventArgsConverter.cs"/>
   </ItemGroup>
 
   <ItemGroup>

@@ -25,7 +25,7 @@ using GalaSoft.MvvmLight.Helpers;
 
 ////using GalaSoft.Utilities.Attributes;
 
-#if PLATFORMNET45
+#if (PLATFORMNET45 || CORE30)
 namespace GalaSoft.MvvmLight.CommandWpf
 #else
 namespace GalaSoft.MvvmLight.Command

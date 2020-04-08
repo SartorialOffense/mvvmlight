@@ -16,7 +16,12 @@
 using System;
 using System.Windows;
 using System.Windows.Input;
+
+#if (CORE30)
+using Microsoft.Xaml.Behaviors;
+#else
 using System.Windows.Interactivity;
+#endif
 
 #if SILVERLIGHT
 using System.Windows.Controls;

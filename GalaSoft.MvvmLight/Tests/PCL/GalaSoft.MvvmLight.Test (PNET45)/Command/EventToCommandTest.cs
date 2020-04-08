@@ -1,15 +1,19 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Interactivity;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Test.ViewModel;
-
 #if NEWUNITTEST
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 #else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
+
+#if CORE30
+using Microsoft.Xaml.Behaviors;
+#else
+using System.Windows.Interactivity;
 #endif
 
 namespace GalaSoft.MvvmLight.Test.Command
