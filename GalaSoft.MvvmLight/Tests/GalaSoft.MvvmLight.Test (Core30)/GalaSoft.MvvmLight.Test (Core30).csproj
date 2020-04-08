@@ -1,0 +1,119 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>GalaSoft.MvvmLight.Test</RootNamespace>
+    <UseWPF>true</UseWPF>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;CMNATTR;PORTABLE;DOTNET;NEWLOCATOR;</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>CMNATTR;PORTABLE;DOTNET;NEWLOCATOR;</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Threading\DispatcherHelperTest.cs" Link="Threading\DispatcherHelperTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Command\EventArgsConverter.cs" Link="Command\EventArgsConverter.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Command\EventToCommandEventArgsTest.cs" Link="Command\EventToCommandEventArgsTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Command\EventToCommandStub.cs" Link="Command\EventToCommandStub.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Command\EventToCommandTest.cs" Link="Command\EventToCommandTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Command\RelayCommandGenericTest.cs" Link="Command\RelayCommandGenericTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Command\RelayCommandTest.cs" Link="Command\RelayCommandTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Command\StringEventArgs.cs" Link="Command\StringEventArgs.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Command\TemporaryClass.cs" Link="Command\TemporaryClass.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\CommonTestClass.cs" Link="Helpers\CommonTestClass.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\InternalTestClass.cs" Link="Helpers\InternalTestClass.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\InternalTestClassGeneric.cs" Link="Helpers\InternalTestClassGeneric.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\InternalTestClassGenericWithResult.cs" Link="Helpers\InternalTestClassGenericWithResult.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\InternalTestClassWithResult.cs" Link="Helpers\InternalTestClassWithResult.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\PublicTestClass.cs" Link="Helpers\PublicTestClass.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\PublicTestClassGeneric.cs" Link="Helpers\PublicTestClassGeneric.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\PublicTestClassGenericWithResult.cs" Link="Helpers\PublicTestClassGenericWithResult.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\PublicTestClassWithResult.cs" Link="Helpers\PublicTestClassWithResult.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\WeakActionGenericNestedTest.cs" Link="Helpers\WeakActionGenericNestedTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\WeakActionGenericTest.cs" Link="Helpers\WeakActionGenericTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\WeakActionNestedTest.cs" Link="Helpers\WeakActionNestedTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\WeakActionTest.cs" Link="Helpers\WeakActionTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\WeakActionTestCase.cs" Link="Helpers\WeakActionTestCase.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\WeakFuncGenericNestedTest.cs" Link="Helpers\WeakFuncGenericNestedTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\WeakFuncGenericTest.cs" Link="Helpers\WeakFuncGenericTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\WeakFuncNestedTest.cs" Link="Helpers\WeakFuncNestedTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\WeakFuncTest.cs" Link="Helpers\WeakFuncTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Ioc\SimpleIocTestAutoCreation.cs" Link="Ioc\SimpleIocTestAutoCreation.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Ioc\SimpleIocTestContains.cs" Link="Ioc\SimpleIocTestContains.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Ioc\SimpleIocTestCreationTime.cs" Link="Ioc\SimpleIocTestCreationTime.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Ioc\SimpleIocTestExceptions.cs" Link="Ioc\SimpleIocTestExceptions.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Ioc\SimpleIocTestIsRegistered.cs" Link="Ioc\SimpleIocTestIsRegistered.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Ioc\SimpleIocTestMultipleConstructors.cs" Link="Ioc\SimpleIocTestMultipleConstructors.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Ioc\SimpleIocTestMultipleInstances.cs" Link="Ioc\SimpleIocTestMultipleInstances.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Ioc\SimpleIocTestSingleInstance.cs" Link="Ioc\SimpleIocTestSingleInstance.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Ioc\SimpleIocTestUnregistration.cs" Link="Ioc\SimpleIocTestUnregistration.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\GarbageCollectionTest.cs" Link="Messaging\GarbageCollectionTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\ITestMessage.cs" Link="Messaging\ITestMessage.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\MessengerBroadcastToAllTest.cs" Link="Messaging\MessengerBroadcastToAllTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\MessengerCreationDeletionTest.cs" Link="Messaging\MessengerCreationDeletionTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\MessengerMultipleInstancesTest.cs" Link="Messaging\MessengerMultipleInstancesTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\MessengerOverrideDefaultTest.cs" Link="Messaging\MessengerOverrideDefaultTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\MessengerRegisterUnregisterTest.cs" Link="Messaging\MessengerRegisterUnregisterTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\MessengerRegisterWhileSendingTest.cs" Link="Messaging\MessengerRegisterWhileSendingTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\MessengerSendToAllTest.cs" Link="Messaging\MessengerSendToAllTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\MessengerSendToTypeTest.cs" Link="Messaging\MessengerSendToTypeTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\MessengerSendWithTokenTest.cs" Link="Messaging\MessengerSendWithTokenTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\MessengerTestConstrainingMessages.cs" Link="Messaging\MessengerTestConstrainingMessages.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\NotificationMessageActionTest.cs" Link="Messaging\NotificationMessageActionTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\NotificationMessageTest.cs" Link="Messaging\NotificationMessageTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\PropertyChangedMessageTest.cs" Link="Messaging\PropertyChangedMessageTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\TestMessageBase.cs" Link="Messaging\TestMessageBase.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Messaging\TestMessageImpl.cs" Link="Messaging\TestMessageImpl.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\ObservableObjectPropertyChangedTest.cs" Link="ObservableObjectPropertyChangedTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\ObservableObjectTest.cs" Link="ObservableObjectTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\ITestClass.cs" Link="Stubs\ITestClass.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestBaseClass.cs" Link="Stubs\TestBaseClass.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestClass1.cs" Link="Stubs\TestClass1.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestClass2.cs" Link="Stubs\TestClass2.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestClass3.cs" Link="Stubs\TestClass3.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestClass4.cs" Link="Stubs\TestClass4.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestClass5.cs" Link="Stubs\TestClass5.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestClass6.cs" Link="Stubs\TestClass6.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestClass7.cs" Link="Stubs\TestClass7.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestClass8.cs" Link="Stubs\TestClass8.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestClass9.cs" Link="Stubs\TestClass9.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestClassForCreationTime.cs" Link="Stubs\TestClassForCreationTime.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Stubs\TestClassWithMultiConstructors.cs" Link="Stubs\TestClassWithMultiConstructors.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\ViewModelBaseAndPropertyChangedTest.cs" Link="ViewModelBaseAndPropertyChangedTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\ViewModelBaseTest.cs" Link="ViewModelBaseTest.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\ViewModel\CommandViewModel.cs" Link="ViewModel\CommandViewModel.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\ViewModel\TestClassWithObservableObject.cs" Link="ViewModel\TestClassWithObservableObject.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\ViewModel\TestObservableObject.cs" Link="ViewModel\TestObservableObject.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\ViewModel\TestViewModel.cs" Link="ViewModel\TestViewModel.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\ViewModel\TestViewModelForPropertyChanged.cs" Link="ViewModel\TestViewModelForPropertyChanged.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\ViewModel\TestViewModelNoMagicString.cs" Link="ViewModel\TestViewModelNoMagicString.cs" />
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\ViewModel\ViewModelStub.cs" Link="ViewModel\ViewModelStub.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.0.1" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GalaSoft.MvvmLight.Platform (Core30)\GalaSoft.MvvmLight.Platform (Core30).csproj" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Ioc\" />
+    <Folder Include="Messaging\" />
+    <Folder Include="Stubs\" />
+    <Folder Include="Threading\" />
+    <Folder Include="ViewModel\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+</Project>

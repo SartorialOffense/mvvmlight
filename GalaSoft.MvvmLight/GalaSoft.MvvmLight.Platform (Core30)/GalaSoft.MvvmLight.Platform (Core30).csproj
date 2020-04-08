@@ -38,11 +38,14 @@
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.2" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
-    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="..\GalaSoft.MvvmLight (PCL)\License.txt" Link="License.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GalaSoft.MvvmLight.STD10\GalaSoft.MvvmLight.STD10.csproj" />
   </ItemGroup>
 
 </Project>
