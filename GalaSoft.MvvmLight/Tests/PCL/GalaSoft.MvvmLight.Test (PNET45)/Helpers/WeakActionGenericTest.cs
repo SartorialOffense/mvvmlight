@@ -9,7 +9,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GalaSoft.MvvmLight.Test.Helpers
 {
+#if (STA_TESTING)
+    [StaTestClass]
+#else
     [TestClass]
+#endif
     public class WeakActionGenericTest
     {
         private PublicTestClass<string> _itemPublic;

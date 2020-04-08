@@ -1,6 +1,6 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Command;
-
+using GalaSoft.MvvmLight.Test.Helpers;
 #if NEWUNITTEST
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 #else
@@ -9,7 +9,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GalaSoft.MvvmLight.Test.Command
 {
+#if (STA_TESTING)
+    [StaTestClass]
+#else
     [TestClass]
+#endif
     public class RelayCommandGenericTest
     {
         private bool _canExecute = true;

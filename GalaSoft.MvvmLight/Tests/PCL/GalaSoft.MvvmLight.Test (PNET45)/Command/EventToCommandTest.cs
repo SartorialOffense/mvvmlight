@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Test.Helpers;
 using GalaSoft.MvvmLight.Test.ViewModel;
 #if NEWUNITTEST
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
@@ -18,7 +19,11 @@ using System.Windows.Interactivity;
 
 namespace GalaSoft.MvvmLight.Test.Command
 {
+#if (STA_TESTING)
+    [StaTestClass]
+#else
     [TestClass]
+#endif
     public class EventToCommandTest
     {
 #if !WPSL81 && !WPSL80

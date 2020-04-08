@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using GalaSoft.MvvmLight.Test.Helpers;
 using GalaSoft.MvvmLight.Threading;
 
 #if NEWUNITTEST
@@ -16,7 +17,11 @@ using System.Windows.Controls;
 
 namespace GalaSoft.MvvmLight.Test.Threading
 {
+#if (STA_TESTING)
+    [StaTestClass]
+#else
     [TestClass]
+#endif
     public class DispatcherHelperTest
     {
         private const string NewContent = "New content";
