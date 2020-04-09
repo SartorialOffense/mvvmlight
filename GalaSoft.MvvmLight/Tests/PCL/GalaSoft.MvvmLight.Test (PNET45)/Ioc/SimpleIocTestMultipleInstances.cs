@@ -973,7 +973,7 @@ namespace GalaSoft.MvvmLight.Test.Ioc
                 SimpleIoc.Default.GetInstance<TestClass1>();
                 Assert.Fail("ActivationException was expected");
             }
-#if NETSTANDARD1_0
+#if NETSTANDARD1_0 || CORE30
             catch (InvalidOperationException ex)
 #else
             catch (ActivationException ex)

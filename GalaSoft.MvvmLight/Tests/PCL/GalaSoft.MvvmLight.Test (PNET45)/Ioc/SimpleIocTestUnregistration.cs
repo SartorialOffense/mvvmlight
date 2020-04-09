@@ -36,7 +36,7 @@ namespace GalaSoft.MvvmLight.Test.Ioc
                 SimpleIoc.Default.GetInstance<TestClass1>();
                 Assert.Fail("ActivationException was expected");
             }
-#if NETSTANDARD1_0
+#if NETSTANDARD1_0 || CORE30
             catch (System.InvalidOperationException)
 #else
             catch (ActivationException ex)
@@ -97,7 +97,7 @@ namespace GalaSoft.MvvmLight.Test.Ioc
                 SimpleIoc.Default.GetInstance<TestClass1>(key1);
                 Assert.Fail("ActivationException was expected");
             }
-#if NETSTANDARD1_0
+#if NETSTANDARD1_0 || CORE30
             catch (System.InvalidOperationException)
 #else
             catch (ActivationException ex)
